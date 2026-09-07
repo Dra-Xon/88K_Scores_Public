@@ -8253,6 +8253,6 @@ html, body {
 
 #viewerContainer {
   top: 32px !important; 
-  bottom: 0 !important;
+  bottom: -32px !important;
   height: auto;
 }
