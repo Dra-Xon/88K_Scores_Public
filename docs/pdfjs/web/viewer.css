@@ -8243,3 +8243,25 @@ dialog :link{
 .toolbarField {
   margin: 3px 0 !important;
 }
+
+
+/* 强制隐藏 PDF.js 顶部所有编辑、绘图、侧边栏及高级菜单按钮 */
+#sidebarToggle,
+#sidebarContainer,
+#viewThumbnail,
+#viewOutline,
+#viewAttachments,
+#viewLayers,
+#editorModeButtons,
+#editorHighlight,
+#editorFreeText,
+#editorStamp,
+#editorInk,
+#editorModeSeparator,
+#secondaryToolbar,
+#secondaryToolbarToggle,
+#viewFind {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
