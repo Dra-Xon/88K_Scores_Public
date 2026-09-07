@@ -8302,39 +8302,29 @@ dialog :link{
   padding: 0 !important;
 }
 
-/* =========================================================
-   核心突破：通过 position: fixed 脱离 VitePress Markdown 外部容器限制
-   ========================================================= */
-.pdf-viewer-wrapper.is-fullscreen-mode,
-.pdf-viewer-wrapper:fullscreen,
-.pdf-viewer-wrapper:-webkit-full-screen {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 99999 !important;
+/* 	=========================================================
+	PDF.js 内部全屏消除底部空白
+	========================================================= */
+	
+html, body {
+  height: 100% !important;
+  width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  border: none !important;
-  border-radius: 0 !important;
-  background-color: #000 !important;
-  display: flex !important;
-  flex-direction: column !important;
+  overflow: hidden !important;
 }
 
-/* 工具栏固定 42px，绝对不压缩 */
-.pdf-viewer-wrapper.is-fullscreen-mode .pdf-toolbar {
-  flex: 0 0 42px !important;
-  height: 42px !important;
+#outerContainer {
+  height: 100% !important;
+  width: 100% !important;
 }
 
-/* iframe 垂直方向强行占据 100% 剩余空间 (100vh - 42px) */
-.pdf-viewer-wrapper.is-fullscreen-mode .pdf-iframe {
-  flex: 1 1 auto !important;
-  height: calc(100vh - 42px) !important;
-  max-height: calc(100vh - 42px) !important;
-  min-height: 0 !important;
+#mainContainer {
+  height: 100% !important;
+}
+
+#viewerContainer {
+  top: 32px !important; 
+  bottom: 0 !important;
+  height: calc(100% - 32px) !important;
 }
