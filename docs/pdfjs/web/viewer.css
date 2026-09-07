@@ -8209,12 +8209,13 @@ dialog :link{
    PDF.js 精简版：还原二级菜单与打印按钮，仅隐藏侧边栏与绘图工具
    ========================================================= */
 
-/* 2. 隐藏顶部编辑、高亮、涂鸦工具组 */
-#editorModeButtons,
-#editorHighlight,
-#editorFreeText,
-#editorStamp,
-#editorInk,
-#editorModeSeparator {
+/* 1. 隐藏左侧侧边栏及其切换按钮（目录、缩略图、大纲） */
+#sidebarToggle,
+#sidebarContainer,
+#viewThumbnail,
+#viewOutline,
+#viewAttachments,
+#viewLayers {
   display: none !important;
 }
+
