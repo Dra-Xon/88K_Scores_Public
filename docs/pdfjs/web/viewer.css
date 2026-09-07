@@ -8206,40 +8206,20 @@ dialog :link{
 }
 
 /* =========================================================
-   PDF.js 侧边栏强力屏蔽（解决 ID 选择器失效问题）
+   PDF.js 精简版：还原二级菜单与打印按钮，仅隐藏侧边栏与绘图工具
    ========================================================= */
 
-/* 1. 强力隐藏侧边栏开关按钮及 DOM 节点 */
+/* 1. 隐藏左侧侧边栏及其切换按钮（目录、缩略图、大纲） */
 #sidebarToggle,
 #sidebarContainer,
 #viewThumbnail,
 #viewOutline,
 #viewAttachments,
-#viewLayers,
-.sidebarContainer,
-.toolbarButton#sidebarToggle {
+#viewLayers {
   display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  width: 0 !important;
-  height: 0 !important;
 }
 
-/* 2. 强行锁定 PDF 主内容区吃满 100% 宽度（防止留出左侧 200px 空白） */
-#mainContainer,
-.outerContainer #mainContainer,
-.outerContainer.sidebarOpen #mainContainer {
-  left: 0 !important;
-  width: 100% !important;
-}
-
-/* 3. 屏蔽 sidebarOpen 触发的平移过渡 */
-.outerContainer.sidebarOpen #viewerContainer {
-  left: 0 !important;
-}
-
-/* 4. 隐藏顶部编辑、高亮、涂鸦工具组 */
+/* 2. 隐藏顶部编辑、高亮、涂鸦工具组 */
 #editorModeButtons,
 #editorHighlight,
 #editorFreeText,
@@ -8249,58 +8229,6 @@ dialog :link{
   display: none !important;
 }
 
-/* 普通非全屏形态 */
-.pdf-viewer-wrapper {
-  width: 100%;
-  margin: 16px 0;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: var(--vp-c-bg-soft);
-  box-sizing: border-box !important;
-}
-
-.pdf-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 42px; /* 固化 Toolbar 高度 */
-  padding: 0 16px;
-  background-color: var(--vp-c-bg-alt);
-  border-bottom: 1px solid var(--vp-c-divider);
-  box-sizing: border-box !important;
-}
-
-.pdf-title {
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--vp-c-text-1);
-}
-
-.pdf-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.pdf-btn {
-  padding: 4px 10px;
-  font-size: 12px;
-  border-radius: 4px;
-  border: 1px solid var(--vp-c-divider);
-  background-color: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.pdf-iframe {
-  display: block !important;
-  width: 100% !important;
-  height: 80vh;
-  border: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
 
 /* 	=========================================================
 	PDF.js 内部全屏消除底部空白
