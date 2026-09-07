@@ -8204,3 +8204,42 @@ dialog :link{
     display:none;
   }
 }
+
+/* =========================================================
+   极简 PDF.js 视图：隐藏侧边栏目录/高亮/文本选择/绘图等冗余功能
+   ========================================================= */
+
+/* 1. 隐藏左侧边栏开关按钮（目录、缩略图、书签大纲等） */
+#sidebarToggle,
+#viewThumbnail,
+#viewOutline,
+#viewAttachments,
+#viewLayers {
+  display: none !important;
+}
+
+/* 2. 隐藏工具栏中的高亮、文本编辑、签名与绘图功能按钮 */
+#editorModeButtons,
+#editorHighlight,
+#editorFreeText,
+#editorStamp,
+#editorInk,
+#editorModeSeparator {
+  display: none !important;
+}
+
+/* 3. 隐藏二次菜单与更多高级选项（防止弹出隐藏工具） */
+#secondaryToolbar,
+#secondaryToolbarToggle {
+  display: none !important;
+}
+
+/* 4. 隐藏搜索框/查找栏按钮（如不需要在 PDF 内部搜索） */
+#viewFind {
+  display: none !important;
+}
+
+/* 5. 调整剩余核心按钮（打印、下载、缩放、翻页）居中/靠右视觉 */
+.toolbarField {
+  margin: 3px 0 !important;
+}
