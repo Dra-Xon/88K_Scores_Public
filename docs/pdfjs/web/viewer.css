@@ -8248,3 +8248,93 @@ dialog :link{
 #editorModeSeparator {
   display: none !important;
 }
+
+/* 普通非全屏形态 */
+.pdf-viewer-wrapper {
+  width: 100%;
+  margin: 16px 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--vp-c-bg-soft);
+  box-sizing: border-box !important;
+}
+
+.pdf-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 42px; /* 固化 Toolbar 高度 */
+  padding: 0 16px;
+  background-color: var(--vp-c-bg-alt);
+  border-bottom: 1px solid var(--vp-c-divider);
+  box-sizing: border-box !important;
+}
+
+.pdf-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+}
+
+.pdf-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pdf-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--vp-c-divider);
+  background-color: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pdf-iframe {
+  display: block !important;
+  width: 100% !important;
+  height: 80vh;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* =========================================================
+   核心突破：通过 position: fixed 脱离 VitePress Markdown 外部容器限制
+   ========================================================= */
+.pdf-viewer-wrapper.is-fullscreen-mode,
+.pdf-viewer-wrapper:fullscreen,
+.pdf-viewer-wrapper:-webkit-full-screen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background-color: #000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* 工具栏固定 42px，绝对不压缩 */
+.pdf-viewer-wrapper.is-fullscreen-mode .pdf-toolbar {
+  flex: 0 0 42px !important;
+  height: 42px !important;
+}
+
+/* iframe 垂直方向强行占据 100% 剩余空间 (100vh - 42px) */
+.pdf-viewer-wrapper.is-fullscreen-mode .pdf-iframe {
+  flex: 1 1 auto !important;
+  height: calc(100vh - 42px) !important;
+  max-height: calc(100vh - 42px) !important;
+  min-height: 0 !important;
+}
