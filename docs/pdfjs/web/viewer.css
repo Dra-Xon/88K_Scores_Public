@@ -8206,36 +8206,21 @@ dialog :link{
 }
 
 /* =========================================================
-   PDF.js 精确控制：显式恢复二级菜单，移除侧边栏与打印
+   PDF.js 极简精确定制（修复二级菜单排版与打印按钮）
    ========================================================= */
 
-/* 1. 强制恢复二级菜单按钮与弹窗 */
-#secondaryToolbarToggle,
-#secondaryToolbar,
-.secondaryToolbar {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-#presentationMode,
-#secondaryPresentationMode {
-  display: block !important;
-}
-
-/* 2. 精确隐藏所有打印相关节点（包含主工具栏与二级菜单内部） */
+/* 1. 强力且精确地隐藏所有形式的打印按钮 */
 #print,
+#printService,
 #secondaryPrint,
 button#print,
 button#secondaryPrint,
 .toolbarButton.print,
 .secondaryToolbarButton.print {
   display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
 }
 
-/* 3. 精确隐藏左侧侧边栏及其切换按钮 */
+/* 2. 隐藏左侧侧边栏及其切换按钮（目录、缩略图、大纲） */
 #sidebarToggle,
 #sidebarContainer,
 #viewThumbnail,
@@ -8245,7 +8230,7 @@ button#secondaryPrint,
   display: none !important;
 }
 
-/* 4. 精确隐藏编辑/绘图工具组 */
+/* 3. 隐藏顶部编辑、高亮、涂鸦工具组 */
 #editorModeButtons,
 #editorHighlight,
 #editorFreeText,
@@ -8253,4 +8238,18 @@ button#secondaryPrint,
 #editorInk,
 #editorModeSeparator {
   display: none !important;
+}
+
+/* 4. 恢复并保护二级菜单原生结构（防止排版错乱） */
+/* 仅取消隐藏二级菜单切换按钮，允许 PDF.js 原生接管下拉面板 */
+#secondaryToolbarToggle {
+  display: inline-block !important;
+}
+
+/* 确保二级菜单内的文本与图标恢复正常间距与对齐 */
+.secondaryToolbarButton {
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
+  white-space: nowrap !important;
 }
