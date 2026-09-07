@@ -8206,10 +8206,36 @@ dialog :link{
 }
 
 /* =========================================================
-   PDF.js 精确定制样式：保留下载/缩放/全屏/二级菜单，精简其余项
+   PDF.js 精确控制：显式恢复二级菜单，移除侧边栏与打印
    ========================================================= */
 
-/* 1. 隐藏左侧侧边栏及其开关按钮（目录、缩略图、大纲） */
+/* 1. 强制恢复二级菜单按钮与弹窗 */
+#secondaryToolbarToggle,
+#secondaryToolbar,
+.secondaryToolbar {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#presentationMode,
+#secondaryPresentationMode {
+  display: block !important;
+}
+
+/* 2. 精确隐藏所有打印相关节点（包含主工具栏与二级菜单内部） */
+#print,
+#secondaryPrint,
+button#print,
+button#secondaryPrint,
+.toolbarButton.print,
+.secondaryToolbarButton.print {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* 3. 精确隐藏左侧侧边栏及其切换按钮 */
 #sidebarToggle,
 #sidebarContainer,
 #viewThumbnail,
@@ -8219,13 +8245,7 @@ dialog :link{
   display: none !important;
 }
 
-/* 2. 单独隐藏打印按钮 */
-#print,
-#secondaryPrint {
-  display: none !important;
-}
-
-/* 3. 隐藏顶部所有标注、绘图、高亮与文本编辑按钮组 */
+/* 4. 精确隐藏编辑/绘图工具组 */
 #editorModeButtons,
 #editorHighlight,
 #editorFreeText,
@@ -8233,15 +8253,4 @@ dialog :link{
 #editorInk,
 #editorModeSeparator {
   display: none !important;
-}
-
-/* 4. 显式恢复二级菜单与全屏功能 */
-#secondaryToolbarToggle,
-#secondaryToolbar {
-  display: flex !important;
-}
-
-#presentationMode,
-#secondaryPresentationMode {
-  display: block !important;
 }
