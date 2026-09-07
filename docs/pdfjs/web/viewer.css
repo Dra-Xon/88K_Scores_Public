@@ -8228,31 +8228,3 @@ dialog :link{
 #editorModeSeparator {
   display: none !important;
 }
-
-
-/* 	=========================================================
-	PDF.js 内部全屏消除底部空白
-	========================================================= */
-	
-html, body {
-  height: 100% !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-
-#outerContainer {
-  height: 100% !important;
-  width: 100% !important;
-}
-
-#mainContainer {
-  height: 100% !important;
-}
-
-#viewerContainer {
-  top: 32px !important; 
-  bottom: -32px !important;
-  height: auto;
-}
