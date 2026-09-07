@@ -8252,8 +8252,7 @@ dialog :link{
 /* =========================================================
    PDF.js 内部全屏消除底部空白
    ========================================================= */
-html,
-body {
+html, body {
   height: 100% !important;
   width: 100% !important;
   margin: 0 !important;
@@ -8271,7 +8270,8 @@ body {
 }
 
 #viewerContainer {
-  top: 32px !important;
+  /* 强行吃满除顶部工具栏外的全部剩余高度 */
+  top: 32px !important; 
   bottom: 0 !important;
-  height: auto !important;
+  height: calc(100% - 32px) !important;
 }
