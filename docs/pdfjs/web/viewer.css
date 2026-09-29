@@ -8242,3 +8242,9 @@ dialog :link{
 #editorModeSeparator {
   display: none !important;
 }
+/* Hide toolbar actions requested by the site while preserving PDF.js DOM hooks. */
+#viewFindButton,
+#viewsManagerToggleButton,
+#printButton {
+  display: none !important;
+}
