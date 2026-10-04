@@ -23469,14 +23469,9 @@ function compileType3Glyph({
   }
   const steps = new Int32Array([0, width1, -1, 0, -width1, 0, 0, 0, 1]);
   const pathBuf = [];
-  const {
-    a,
-    b,
-    c,
-    d,
-    e,
-    f
-  } = new DOMMatrix().scaleSelf(1 / width, -1 / height).translateSelf(0, -height);
+  // Workers do not expose DOMMatrix in every browser. This is the same
+  // scale/translation matrix, computed without a DOM dependency.
+  const a = 1 / width, b = 0, c = 0, d = -1 / height, e = 0, f = 1;
   for (i = 0; count && i <= height; i++) {
     let p = i * width1;
     const end = p + width;
