@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><title>B站 postMessage 探测</title>
+<style>body{font:16px sans-serif;margin:24px}iframe{width:700px;height:394px;border:0}pre{white-space:pre-wrap}</style>
+<h1>B站 postMessage 探测</h1>
+<p>将鼠标移入视频；下方仅记录消息类型和坐标是否存在。请求名为试验猜测。</p>
+<iframe id="player" src="https://player.bilibili.com/player.html?bvid=BV1gF411G7ej&amp;autoplay=0" allowfullscreen></iframe>
+<pre id="results"></pre>
+<script>
+const frame = document.getElementById('player');
+const results = document.getElementById('results');
+let messages = 0, coordinates = 0;
+const log = text => results.textContent += text + '\n';
+window.addEventListener('message', event => {
+  if(event.origin !== 'https://player.bilibili.com' || event.source !== frame.contentWindow) return;
+  messages++;
+  let data = event.data;
+  if(typeof data === 'string') { try { data = JSON.parse(data.replace(/^playerOperation-/, '')); } catch { data = null; } }
+  const value = data?.value ?? data?.data ?? data;
+  const hasCoordinates = !!value && ((Number.isFinite(value.clientX) && Number.isFinite(value.clientY)) || (Number.isFinite(value.x) && Number.isFinite(value.y)));
+  if(hasCoordinates) coordinates++;
+  log('收到消息：' + JSON.stringify({type:data?.type ?? typeof event.data,hasCoordinates}));
+});
+function send(){ for(const type of ['enableMouseMove','subscribeMouseMove']) {
+  frame.contentWindow.postMessage('setPlayer-' + JSON.stringify({type,value:true}), 'https://player.bilibili.com');
+  log('发出试验请求：' + type);
+}}
+frame.addEventListener('load',send);
+setTimeout(send,1500); setTimeout(send,4000);
+setTimeout(()=>log('15秒统计：' + JSON.stringify({messages,coordinates})),15000);
+</script></html>
