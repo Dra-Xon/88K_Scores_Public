@@ -50,6 +50,7 @@ scheduleHide()
 
 // Scale the entire toolbar from its non-fullscreen container width.
 let normalContainerWidth = window.innerWidth
+let lastToolbarScale = ''
 const syncToolbarScale = () => {
   const fullscreenElement = window.parent.document.fullscreenElement ||
     window.parent.document.webkitFullscreenElement
@@ -58,6 +59,9 @@ const syncToolbarScale = () => {
   const scale = isContainerFullscreen && normalContainerWidth > 0
     ? window.innerWidth / normalContainerWidth : 1
   const baseHeight = normalContainerWidth <= 700 ? 64 : 32
+  const key = `${scale}:${baseHeight}`
+  if (key === lastToolbarScale) return
+  lastToolbarScale = key
   document.documentElement.style.setProperty('--toolbar-height', `${baseHeight * scale}px`)
   toolbar.style.setProperty('--toolbar-height', `${baseHeight}px`)
   toolbar.style.zoom = String(scale)
@@ -65,7 +69,15 @@ const syncToolbarScale = () => {
   // Dividing a percentage width by scale would shrink the toolbar a second time.
   toolbar.style.width = '100%'
 }
-window.addEventListener('resize', syncToolbarScale)
-window.parent.document.addEventListener('fullscreenchange', syncToolbarScale)
-window.parent.document.addEventListener('webkitfullscreenchange', syncToolbarScale)
+let toolbarScaleFrame = 0
+const scheduleToolbarScale = () => {
+  if (toolbarScaleFrame) return
+  toolbarScaleFrame = requestAnimationFrame(() => {
+    toolbarScaleFrame = 0
+    syncToolbarScale()
+  })
+}
+window.addEventListener('resize', scheduleToolbarScale)
+window.parent.document.addEventListener('fullscreenchange', scheduleToolbarScale)
+window.parent.document.addEventListener('webkitfullscreenchange', scheduleToolbarScale)
 syncToolbarScale()
