@@ -6310,6 +6310,11 @@ button.hasPopupMenu{
   }
 }
 
+/* Invert only PDF pages; viewer chrome and surrounding surfaces stay unchanged. */
+html.site-pdf-inverted:not(.site-pdf-invert-disabled) .pdfViewer .page{
+  filter:invert(1);
+}
+
 .pdfViewer .page{
   --user-unit:1;
   --total-scale-factor:calc(var(--scale-factor) * var(--user-unit));
@@ -8358,3 +8363,5 @@ dialog :link{
 @media (prefers-reduced-motion: reduce) {
   #toolbarContainer { transition: none; }
 }
+
+#siteAutoInvert::before { mask-image: none; background-color: transparent; content: '◐'; color: var(--toolbar-icon-bg-color); font-size: 19px; line-height: 16px; text-align: center; }
