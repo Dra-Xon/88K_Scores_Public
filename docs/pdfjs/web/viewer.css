@@ -8365,3 +8365,5 @@ dialog :link{
 }
 
 #siteAutoInvert::before { mask-image: none; background-color: transparent; content: '◐'; color: var(--toolbar-icon-bg-color); font-size: 19px; line-height: 16px; text-align: center; }
+
+img, a { -webkit-user-drag: none; }
