@@ -8364,6 +8364,19 @@ dialog :link{
   #toolbarContainer { transition: none; }
 }
 
-#siteAutoInvert::before { mask-image: none; background-color: transparent; content: '◐'; color: var(--toolbar-icon-bg-color); font-size: 19px; line-height: 16px; text-align: center; }
+#siteAutoInvert::before {
+  position: absolute;
+  content: '';
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  background-color: var(--toolbar-icon-bg-color);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M10 2a8 8 0 0 0 0 16z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M10 2a8 8 0 0 0 0 16z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
 
 img, a { -webkit-user-drag: none; }
