@@ -1,5 +1,5 @@
 # DraXon_Space
 
-这是一次测试。架构更新中！
+即将开业……
 
 * <a href="https://dra-xon.github.io/DraXon_Space_Public/" target="_blank" rel="noopener noreferrer">点我进入网站</a>
