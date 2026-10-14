@@ -2,4 +2,4 @@
 
 这是一次测试。架构更新中！
 
-* <a href="https://draxon.space/" target="_blank" rel="noopener noreferrer">点我进入网站</a>
+* <a href="https://dra-xon.github.io/DraXon_Space_Public/" target="_blank" rel="noopener noreferrer">点我进入网站</a>
